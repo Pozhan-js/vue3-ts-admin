@@ -1,9 +1,9 @@
 import HYRequest from './request'
-import { BASE_URL1, TIME_OUT1 } from './config'
+import { BASE_URL, TIME_OUT } from './config'
 
 const hyRequest = new HYRequest({
-  baseURL: BASE_URL1,
-  timeout: TIME_OUT1,
+  baseURL: BASE_URL,
+  timeout: TIME_OUT,
   interceptors: {}
 })
 

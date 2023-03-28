@@ -48,12 +48,17 @@
 import { ref } from 'vue'
 import PanelAccount from './panel-account.vue'
 import PanelPhone from './panel-phone.vue'
+// import useLoginStore from '@/store/login/login'
+import { localCache } from '@/util/cache'
 
 const isRemPwd = ref<boolean>(false)
 const activeName = ref<string>('account')
 
 // 获取组件实例
 const accountRef = ref<InstanceType<typeof PanelAccount>>()
+
+//创建store独享
+// const loginStore = useLoginStore()
 
 // <InstanceType<typeof PanelAccount>>表示 PanelAccount这个构造函数的返回值的类型
 // InstanceType可以得到返回值类型
@@ -64,9 +69,21 @@ const handleLoginBtnClick = () => {
     // console.log('用户在进行手机登录')accountRef
   } else {
     accountRef.value?.loginAction()
-    console.log('用户在进行账号登录')
+    // console.log('用户在进行账号登录')
   }
 }
+
+// 记住密码
+// const handleChangeBox = () => {
+//   if (isRemPwd.value) {
+//     console.log(isRemPwd.value)
+
+//     // localCache.setCache('name', loginStore.name)
+//   } else {
+//     console.log(isRemPwd.value)
+//     // localCache.deleteCache('name')
+//   }
+// }
 </script>
 
 <style lang="less" scoped>

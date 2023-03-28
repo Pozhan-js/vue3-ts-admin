@@ -22,8 +22,13 @@
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { ElForm, FormRules } from 'element-plus'
+import useLoginStore from '@/store/login/login'
+import type { IAccount } from '@/types'
+// import { accountLoginRequest } from '@/service/login/login'
 
-const accountForm = reactive({
+const loginStore = useLoginStore()
+
+const accountForm = reactive<IAccount>({
   name: '',
   password: ''
 })
@@ -59,6 +64,10 @@ function loginAction() {
       const password = accountForm.password
 
       // 发送请求
+      // accountLoginRequest({ name, password }).then((res) => {
+      //   console.log(res)
+      // })
+      loginStore.loginAccountAction({ name, password })
     } else {
       // console.log('提交验证失败的信息', fields)
       ElMessage.error('Oops, 请您输入正确的面')
