@@ -75,6 +75,7 @@ function loginAction(isRemPwd: boolean) {
         } else {
           localCache.deleteCache('name')
           localCache.deleteCache('password')
+          // localCache.deleteCache('isRemPwd')
         }
       })
     } else {
