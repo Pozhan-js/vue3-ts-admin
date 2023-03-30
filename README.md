@@ -48,3 +48,8 @@ npm run lint
 ### commit 提交格式
 
 feat: Add new feature to backend project
+
+```
+"feat: 完成登录请求以及token持久化"
+git commit -m "feat: 完成登录请求以及token持久化"
+```

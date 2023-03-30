@@ -49,7 +49,7 @@ import { ref } from 'vue'
 import PanelAccount from './panel-account.vue'
 import PanelPhone from './panel-phone.vue'
 // import useLoginStore from '@/store/login/login'
-import { localCache } from '@/util/cache'
+// import { localCache } from '@/util/cache'
 
 const isRemPwd = ref<boolean>(false)
 const activeName = ref<string>('account')
