@@ -45,13 +45,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import PanelAccount from './panel-account.vue'
 import PanelPhone from './panel-phone.vue'
 // import useLoginStore from '@/store/login/login'
-// import { localCache } from '@/util/cache'
+import { localCache } from '@/util/cache'
 
-const isRemPwd = ref<boolean>(false)
+const isRemPwd = ref<boolean>(localCache.getCache('isRemPwd') ?? false)
 const activeName = ref<string>('account')
 
 // 获取组件实例
@@ -64,11 +64,17 @@ const accountRef = ref<InstanceType<typeof PanelAccount>>()
 // InstanceType可以得到返回值类型
 // 加单理解就是可以得到组件实例类型
 
+// 监视
+watch(isRemPwd, (newValue: boolean) => {
+  // console.log(newValue)
+  localCache.setCache('isRemPwd', newValue)
+})
+
 const handleLoginBtnClick = () => {
   if (activeName.value === 'phone') {
     // console.log('用户在进行手机登录')accountRef
   } else {
-    accountRef.value?.loginAction()
+    accountRef.value?.loginAction(isRemPwd.value)
     // console.log('用户在进行账号登录')
   }
 }

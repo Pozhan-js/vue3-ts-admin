@@ -24,13 +24,14 @@ import { ElMessage } from 'element-plus'
 import type { ElForm, FormRules } from 'element-plus'
 import useLoginStore from '@/store/login/login'
 import type { IAccount } from '@/types'
+import { localCache } from '@/util/cache'
 // import { accountLoginRequest } from '@/service/login/login'
 
 const loginStore = useLoginStore()
 
 const accountForm = reactive<IAccount>({
-  name: '',
-  password: ''
+  name: localCache.getCache('name') ?? '',
+  password: localCache.getCache('password') ?? ''
 })
 
 const rules = reactive<FormRules>({
@@ -55,7 +56,7 @@ const rules = reactive<FormRules>({
 // 账号登录逻辑
 // 获取表单真实dom
 const formRef = ref<InstanceType<typeof ElForm>>()
-function loginAction() {
+function loginAction(isRemPwd: boolean) {
   formRef.value?.validate((valid: boolean) => {
     if (valid) {
       // console.log('提交验证成功的信息')
@@ -67,7 +68,15 @@ function loginAction() {
       // accountLoginRequest({ name, password }).then((res) => {
       //   console.log(res)
       // })
-      loginStore.loginAccountAction({ name, password })
+      loginStore.loginAccountAction({ name, password }).then(() => {
+        if (isRemPwd) {
+          localCache.setCache('name', name)
+          localCache.setCache('password', password)
+        } else {
+          localCache.deleteCache('name')
+          localCache.deleteCache('password')
+        }
+      })
     } else {
       // console.log('提交验证失败的信息', fields)
       ElMessage.error('Oops, 请您输入正确的面')

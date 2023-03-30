@@ -3,13 +3,15 @@ import { accountLoginRequest } from '@/service/login/login'
 import type { IAccount } from '@/types'
 import { localCache } from '@/util/cache'
 import { LOGIN_TOKEN } from '@/global/constants'
+import router from '@/router'
 
 const useLoginStore = defineStore('loginStore', {
   state: () => {
     return {
       id: '',
       name: '',
-      token: localCache.getCache(LOGIN_TOKEN)
+      // ??表示当前面数据没有值时 将 ?? 后面的空字符串赋值
+      token: localCache.getCache(LOGIN_TOKEN) ?? ''
     }
   },
   getters: {},
@@ -23,6 +25,8 @@ const useLoginStore = defineStore('loginStore', {
 
       // 持久化token
       localCache.setCache(LOGIN_TOKEN, this.token)
+      // 路由跳转
+      router.push('/main')
     }
   }
 })
