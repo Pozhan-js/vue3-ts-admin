@@ -62,6 +62,9 @@ git commit -m "feat: 完成登录请求以及token持久化"
 // XXX: 用来标记一些草率实现的地方。在写代码的时候，有些地方需要频繁修改，这时候使用 XXX 标记。
 // BUG: 用来标记 BUG~
 // FIXME: 用来标记一些需要修复的位置，可以快速定位。
-————————————————
-版权声明：本文为 CSDN 博主「只爱吃菜不吃饭」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/qq_42597536/article/details/124704601
+
+### 解决浏览器报错 new.api no function
+
+//FIXME: 可能是 tsconfig 中有报错 提示 ts 类型检测 在 5.0 版本有问题 要忽略
+
+## 在 compilerOptions 属性中添加 "ignoreDeprecations": "5.0"来忽略

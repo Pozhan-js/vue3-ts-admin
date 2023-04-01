@@ -21,3 +21,10 @@ export function getUserInfoById(id: number) {
     //  注意在 传递授权信息时 一定要查看  Bearer 是否携带 要是服务器做了相应处理可以不带
   })
 }
+
+// 获取对应权限menu
+export function getUserMenusByRoleId(id: number) {
+  return http.get({
+    url: `/role/${id}/menu`
+  })
+}

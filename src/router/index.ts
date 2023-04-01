@@ -10,10 +10,12 @@ const router = createRouter({
       redirect: '/main'
     },
     {
+      name: 'Login',
       path: '/login',
       component: () => import('@/views/login/Login.vue')
     },
     {
+      name: 'Main',
       path: '/main',
       component: () => import('@/views/main/Main.vue')
     },
@@ -27,13 +29,16 @@ const router = createRouter({
 // 指定路由守卫
 // 参数：to（跳转到的位置） from（从哪里转过来的位置）
 // 返回值：返回值决定导航的路径（不返回或者返回undefined，默认跳转）
-// 举个列子：/=>/mian
+// 举个列子：/=>/main
 // TODO: 路由守卫
 
-router.beforeEach((to) => {
+router.beforeEach((to, _, next) => {
   const token = localCache.getCache(LOGIN_TOKEN)
   if (to.path === '/main' && !token) {
-    return '/login'
+    // return '/login'
+    next({ name: 'Login' })
+  } else {
+    next()
   }
 })
 
