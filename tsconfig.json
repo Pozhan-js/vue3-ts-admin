@@ -13,12 +13,9 @@
       "@/*": ["./src/*"]
     },
     "noImplicitAny": false, //所传参数默认不能为any 关闭 就不用再函数参数中生命参数any类型
-    "types": ["element-plus/global"]
-
-    // "importsNotUsedAsValues": "error"
-    // "ignoreDeprecations": "5.0"
+    "types": ["element-plus/global"],
+    "ignoreDeprecations": "5.0"
   },
-
   "references": [
     {
       "path": "./tsconfig.node.json"
