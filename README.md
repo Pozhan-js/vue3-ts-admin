@@ -67,4 +67,18 @@ git commit -m "feat: 完成登录请求以及token持久化"
 
 //FIXME: 可能是 tsconfig 中有报错 提示 ts 类型检测 在 5.0 版本有问题 要忽略
 
-## 在 compilerOptions 属性中添加 "ignoreDeprecations": "5.0"来忽略
+### 在 compilerOptions 属性中添加 "ignoreDeprecations": "5.0"来忽略
+
+### 解决修改 tsconfig 文件属性后 commit 校验提交不上去 git commit -m "message" --no-verify
+
+（这样就会忽略校验直接提交上去）
+
+### // 清理缓存
+
+npm cache clean --force
+// powershell 执行递归删除 node_modules 文件夹
+rd -r node_modules
+// 删除包版本锁
+ri package-lock.json
+// 安装 npm
+npm install

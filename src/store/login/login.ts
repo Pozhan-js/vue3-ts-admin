@@ -44,14 +44,14 @@ const useLoginStore = defineStore('loginStore', {
         const userInfoResult = await getUserInfoById(id)
         // console.log(userInfoResult)
         this.userInfo = userInfoResult?.data
-        console.log(this.userInfo)
+        // console.log(this.userInfo)
 
         // 虎丘menu
         const userMenuData = await getUserMenusByRoleId(
           userInfoResult?.data.role.id
         )
         this.userMenus = userMenuData?.data
-        console.log(userMenuData)
+        // console.log(userMenuData)
 
         // 路由跳转
         router.push('/main')
