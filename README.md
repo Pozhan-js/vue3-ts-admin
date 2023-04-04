@@ -84,3 +84,11 @@ ri package-lock.json
 npm install
 
 ### 解决 axios 报错 下载对应版本 axios ^0.26.1
+
+### yarn add lint-staged --dev （该插件只对暂存区的文件进行校验）
+
+### 修改.husky/pre-commit，修改内容如下
+
+. "$(dirname "$0")/\_/husky.sh"
+
+npx lint-staged
