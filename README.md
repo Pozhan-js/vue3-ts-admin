@@ -82,3 +82,5 @@ rd -r node_modules
 ri package-lock.json
 // 安装 npm
 npm install
+
+### 解决 axios 报错 下载对应版本 axios ^0.26.1
