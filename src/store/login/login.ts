@@ -23,8 +23,8 @@ const useLoginStore = defineStore('loginStore', {
     return {
       // ??表示当前面数据没有值时 将 ?? 后面的空字符串赋值
       token: localCache.getCache(LOGIN_TOKEN) ?? '',
-      userInfo: {},
-      userMenus: []
+      userInfo: localCache.getCache('userInfo') ?? {},
+      userMenus: localCache.getCache('userMenus') ?? []
     }
   },
   getters: {},
@@ -32,26 +32,24 @@ const useLoginStore = defineStore('loginStore', {
     async loginAccountAction(account: IAccount) {
       try {
         const loginRes = await accountLoginRequest(account)
-        // console.log(loginRes)
         const id = loginRes.data.id
-        // const name = loginRes.data.name
         this.token = loginRes.data.token
 
-        // 持久化token
         localCache.setCache(LOGIN_TOKEN, this.token)
 
-        // 获取用户权限
+        // 1.获取用户权限
         const userInfoResult = await getUserInfoById(id)
-        // console.log(userInfoResult)
         this.userInfo = userInfoResult?.data
-        // console.log(this.userInfo)
 
-        // 虎丘menu
+        // 2.获取权限menu
         const userMenuData = await getUserMenusByRoleId(
           userInfoResult?.data.role.id
         )
         this.userMenus = userMenuData?.data
-        // console.log(userMenuData)
+
+        // 3.持久化token
+        localCache.setCache('userInfo', this.userInfo) //本地缓存用户信息
+        localCache.setCache('userMenus', this.userMenus) // 本地缓存权限列表
 
         // 路由跳转
         router.push('/main')

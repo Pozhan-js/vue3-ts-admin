@@ -1,0 +1,13 @@
+<template>
+  <div class="header-info">
+    <h2>header-info</h2>
+  </div>
+</template>
+
+<script lang="ts" setup></script>
+
+<style lang="less" scoped>
+.header-info {
+  color: red;
+}
+</style>

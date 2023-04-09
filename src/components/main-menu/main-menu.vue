@@ -3,24 +3,45 @@
     <!-- logo部分 -->
     <div class="logo">
       <img class="img" src="@/assets/img/logo.svg" alt="" />
-      <h2 class="title">快乐达管理系统</h2>
+      <h2 v-show="!isFold" class="title">快乐达管理系统</h2>
     </div>
 
     <!-- menu部分 -->
     <div class="menu">
-      <el-menu default-active="2">
+      <el-menu
+        active-text-color="#fff"
+        text-color="#b7bdc3"
+        background-color="#001529"
+        :collapse="isFold"
+      >
+        <template v-for="item in userMenus" :key="item.id">
+          <el-sub-menu :index="item.id + ''">
+            <template #title>
+              <el-icon>
+                <component :is="item.icon.split('-icon-')[1]"></component>
+              </el-icon>
+              <span>{{ item.name }}</span>
+            </template>
+
+            <template v-for="subItem in item.children" :key="subItem.id">
+              <el-menu-item :index="subItem.id + ''">
+                {{ subItem.name }}
+              </el-menu-item>
+            </template>
+          </el-sub-menu>
+        </template>
         <!-- 系统总览 -->
-        <el-sub-menu index="1">
+        <!-- <el-sub-menu index="1">
           <template #title>
             <el-icon><Monitor /></el-icon>
             <span>系统总览</span>
           </template>
           <el-menu-item>核心技术</el-menu-item>
           <el-menu-item>商品统计</el-menu-item>
-        </el-sub-menu>
+        </el-sub-menu> -->
 
         <!-- 系统管理 -->
-        <el-sub-menu index="2">
+        <!-- <el-sub-menu index="2">
           <template #title>
             <el-icon><Setting /></el-icon>
             <span>系统管理</span>
@@ -29,33 +50,47 @@
           <el-menu-item>部门管理</el-menu-item>
           <el-menu-item>菜单管理</el-menu-item>
           <el-menu-item>角色管理</el-menu-item>
-        </el-sub-menu>
+        </el-sub-menu> -->
 
         <!-- 商品中心 -->
-        <el-sub-menu index="3">
+        <!-- <el-sub-menu index="3">
           <template #title>
             <el-icon><ShoppingBag /></el-icon>
             <span>商品中心</span>
           </template>
           <el-menu-item>商品类别</el-menu-item>
           <el-menu-item>商品信息</el-menu-item>
-        </el-sub-menu>
+        </el-sub-menu> -->
 
         <!-- 随便聊聊-->
-        <el-sub-menu index="4">
+        <!-- <el-sub-menu index="4">
           <template #title>
             <el-icon><Monitor /></el-icon>
             <span>随便聊聊</span>
           </template>
           <el-menu-item>你的故事</el-menu-item>
           <el-menu-item>故事列表</el-menu-item>
-        </el-sub-menu>
+        </el-sub-menu> -->
       </el-menu>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+// 使用store
+import useLoginStore from '@/store/login/login'
+
+defineProps({
+  isFold: {
+    type: Boolean,
+    default: false
+  }
+})
+
+const loginStore = useLoginStore()
+
+const userMenus = loginStore.userMenus
+</script>
 
 <style lang="less" scoped>
 .main-menu {
@@ -83,5 +118,9 @@
     color: white;
     white-space: nowrap;
   }
+}
+
+.el-menu {
+  border: none;
 }
 </style>
