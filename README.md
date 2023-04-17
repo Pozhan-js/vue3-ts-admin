@@ -92,3 +92,5 @@ npm install
 . "$(dirname "$0")/\_/husky.sh"
 
 npx lint-staged
+
+### dropdown 组件，有时当鼠标移入标题时会出现外边框

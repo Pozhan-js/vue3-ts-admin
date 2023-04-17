@@ -8,7 +8,10 @@
         <el-header height="50px"
           ><main-header @handleHold="handleIsCollapse"></main-header
         ></el-header>
-        <el-main>Main</el-main>
+        <!-- 主题部分 -->
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
