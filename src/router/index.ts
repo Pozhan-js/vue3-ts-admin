@@ -17,7 +17,25 @@ const router = createRouter({
     {
       name: 'Main',
       path: '/main',
-      component: () => import('@/views/main/Main.vue')
+      component: () => import('@/views/main/Main.vue'),
+      children: [
+        {
+          path: '/main/analysis/overview',
+          component: () => import('@/views/main/analysis/overview/index.vue')
+        },
+        {
+          path: '/main/analysis/dashboard',
+          component: () => import('@/views/main/analysis/dashboard/index.vue')
+        },
+        {
+          path: '/main/system/role',
+          component: () => import('@/views/main/system/role/index.vue')
+        },
+        {
+          path: '/main/system/user',
+          component: () => import('@/views/main/system/user/index.vue')
+        }
+      ]
     },
     {
       path: '/:pathMatch(.*)', //表示所有为被发现的路由都会跳转到这个页面
@@ -34,7 +52,8 @@ const router = createRouter({
 
 router.beforeEach((to, _, next) => {
   const token = localCache.getCache(LOGIN_TOKEN)
-  if (to.path === '/main' && !token) {
+  // 字符串以xxx开头
+  if (to.path.startsWith('/main') && !token) {
     // return '/login'
     next({ name: 'Login' })
   } else {
