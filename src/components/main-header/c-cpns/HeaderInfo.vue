@@ -32,15 +32,21 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="handleExcitClick">
-              <el-icon><CircleClose /></el-icon>
+              <el-icon>
+                <CircleClose />
+              </el-icon>
               <span>退出系统</span>
             </el-dropdown-item>
             <el-dropdown-item divided>
-              <el-icon><InfoFilled /></el-icon>
+              <el-icon>
+                <InfoFilled />
+              </el-icon>
               <span>个人信息</span>
             </el-dropdown-item>
             <el-dropdown-item>
-              <el-icon><Unlock /></el-icon>
+              <el-icon>
+                <Unlock />
+              </el-icon>
               <span>修改密码</span>
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -58,8 +64,6 @@ import { localCache } from '@/util/cache'
 const router = useRouter()
 
 const handleExcitClick = () => {
-  console.log('xxxx')
-
   localCache.deleteCache(LOGIN_TOKEN)
   router.push('/login')
 }
@@ -69,9 +73,11 @@ const handleExcitClick = () => {
 .header-info {
   display: flex;
   align-items: center;
+
   .operation {
     display: inline-flex;
     margin-right: 20px;
+
     span {
       position: relative;
       display: flex;
@@ -125,6 +131,7 @@ const handleExcitClick = () => {
 .el-dropdown-link:focus-visible {
   outline: unset;
 }
+
 .el-dropdown:hover {
   border-color: transparent;
 }

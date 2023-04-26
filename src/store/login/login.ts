@@ -1,14 +1,10 @@
 import { defineStore } from 'pinia'
-import {
-  accountLoginRequest,
-  getUserInfoById,
-  getUserMenusByRoleId
-} from '@/service/login/login'
+import { accountLoginRequest, getUserInfoById, getUserMenusByRoleId } from '@/service/login/login'
 import type { IAccount } from '@/types'
 import { localCache } from '@/util/cache'
+import { mapMenusToRoutes } from '@/util/map-menus'
 import { LOGIN_TOKEN } from '@/global/constants'
 import router from '@/router'
-// import type { IUserInfo } from './loginTypes'
 
 // 定义state类型
 interface ALLState {
@@ -42,18 +38,19 @@ const useLoginStore = defineStore('loginStore', {
         this.userInfo = userInfoResult?.data
 
         // 2.获取权限menu
-        const userMenuData = await getUserMenusByRoleId(
-          userInfoResult?.data.role.id
-        )
+        const userMenuData = await getUserMenusByRoleId(userInfoResult?.data.role.id)
         this.userMenus = userMenuData?.data
 
         // 3.持久化token
         localCache.setCache('userInfo', this.userInfo) //本地缓存用户信息
         localCache.setCache('userMenus', this.userMenus) // 本地缓存权限列表
 
+        // 获取动态路由列表  RouteRecordRaw时路由对象的类型
+        const routes = mapMenusToRoutes(this.userMenus)
+        // 动态加载路由
+        routes.forEach((route) => router.addRoute('/main', route))
         // 路由跳转
         router.push('/main')
-        console.log('函数终止')
       } catch (error) {
         console.log(error)
       }

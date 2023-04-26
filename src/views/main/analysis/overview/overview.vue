@@ -1,13 +1,13 @@
 <template>
-  <div class="role">
-    <h2>role</h2>
+  <div class="overview">
+    <h2>overview</h2>
   </div>
 </template>
 
 <script lang="ts" setup></script>
 
 <style lang="less" scoped>
-.role {
+.overview {
   color: red;
 }
 </style>

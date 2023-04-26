@@ -1,13 +1,13 @@
 <template>
-  <div class="user">
-    <h2>user</h2>
+  <div class="dashboard">
+    <h2>dashboard</h2>
   </div>
 </template>
 
 <script lang="ts" setup></script>
 
 <style lang="less" scoped>
-.user {
+.dashboard {
   color: red;
 }
 </style>

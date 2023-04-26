@@ -10,32 +10,14 @@ const router = createRouter({
       redirect: '/main'
     },
     {
-      name: 'Login',
+      name: 'login',
       path: '/login',
-      component: () => import('@/views/login/Login.vue')
+      component: () => import('@/views/login/login.vue')
     },
     {
-      name: 'Main',
+      name: 'main',
       path: '/main',
-      component: () => import('@/views/main/Main.vue'),
-      children: [
-        {
-          path: '/main/analysis/overview',
-          component: () => import('@/views/main/analysis/overview/index.vue')
-        },
-        {
-          path: '/main/analysis/dashboard',
-          component: () => import('@/views/main/analysis/dashboard/index.vue')
-        },
-        {
-          path: '/main/system/role',
-          component: () => import('@/views/main/system/role/index.vue')
-        },
-        {
-          path: '/main/system/user',
-          component: () => import('@/views/main/system/user/index.vue')
-        }
-      ]
+      component: () => import('@/views/main/main.vue')
     },
     {
       path: '/:pathMatch(.*)', //表示所有为被发现的路由都会跳转到这个页面
