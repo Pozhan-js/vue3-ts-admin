@@ -26,6 +26,8 @@ const router = createRouter({
   ]
 })
 
+// router.addRoute('main', localRoutes[0])
+
 // 指定路由守卫
 // 参数：to（跳转到的位置） from（从哪里转过来的位置）
 // 返回值：返回值决定导航的路径（不返回或者返回undefined，默认跳转）

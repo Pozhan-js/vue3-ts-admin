@@ -18,9 +18,9 @@ const useLoginStore = defineStore('loginStore', {
   state: (): ALLState => {
     return {
       // ??表示当前面数据没有值时 将 ?? 后面的空字符串赋值
-      token: localCache.getCache(LOGIN_TOKEN) ?? '',
-      userInfo: localCache.getCache('userInfo') ?? {},
-      userMenus: localCache.getCache('userMenus') ?? []
+      token: '',
+      userInfo: {},
+      userMenus: []
     }
   },
   getters: {},
@@ -48,11 +48,30 @@ const useLoginStore = defineStore('loginStore', {
         // 获取动态路由列表  RouteRecordRaw时路由对象的类型
         const routes = mapMenusToRoutes(this.userMenus)
         // 动态加载路由
-        routes.forEach((route) => router.addRoute('/main', route))
+        routes.forEach((route) => router.addRoute('main', route))
         // 路由跳转
         router.push('/main')
       } catch (error) {
         console.log(error)
+      }
+    },
+    // 读取本地数据
+    loadLocalCacheAction() {
+      // 用户刷新默认加载数据
+      const token = localCache.getCache(LOGIN_TOKEN)
+      const userInfo = localCache.getCache('userInfo')
+      const userMenus = localCache.getCache('userMenus')
+      if (token && userInfo && userMenus) {
+        this.token = token
+        this.userInfo = userInfo
+        this.userMenus = userMenus
+
+        // 这里表示已经登录了，但是刷新页面，动态路由就会消失，所以需要重新加载
+        // 此时需要再次动态注册路由
+        // 获取动态路由列表  RouteRecordRaw时路由对象的类型
+        const routes = mapMenusToRoutes(this.userMenus)
+        // 动态加载路由
+        routes.forEach((route) => router.addRoute('main', route))
       }
     }
   }

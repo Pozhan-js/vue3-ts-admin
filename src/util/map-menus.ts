@@ -39,7 +39,7 @@ export const mapMenusToRoutes = (userMenus: any[]) => {
           // 5.如果有就添加到路由中
           if (hasRoute) {
             // BUG: 这里有个问题 就是如果有多个子菜单的话 会重复添加路由
-            // console.log(hasRoute)
+            console.log(hasRoute)
 
             routes.push(hasRoute)
           }

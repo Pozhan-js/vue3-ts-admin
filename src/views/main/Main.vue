@@ -5,12 +5,13 @@
         <main-menu :is-fold="isCollapse"></main-menu>
       </el-aside>
       <el-container>
-        <el-header height="50px"
-          ><main-header @handleHold="handleIsCollapse"></main-header
-        ></el-header>
+        <el-header height="50px">
+          <main-header @handleHold="handleIsCollapse"></main-header>
+        </el-header>
         <!-- 主题部分 -->
         <el-main>
           <router-view></router-view>
+          main
         </el-main>
       </el-container>
     </el-container>
@@ -56,6 +57,8 @@ const handleIsCollapse = (flag: boolean) => {
 
   .el-main {
     background-color: #f0f2f5;
+    // background-color: red;
+    // color: aqua;
   }
 }
 </style>

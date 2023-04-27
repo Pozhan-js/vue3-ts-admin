@@ -5,7 +5,7 @@ import 'normalize.css'
 import '@/assets/css/index.less'
 import App from './App.vue'
 import router from './router'
-import pinia from './store'
+import store from './store'
 import RegisterIcon from './global/register-icons'
 
 // 1.element Plus全局注册
@@ -15,6 +15,9 @@ import RegisterIcon from './global/register-icons'
 
 const app = createApp(App)
 app.use(RegisterIcon)
+// use方法相当于让app去执行这个函数传入函数一个app对象
+
+app.use(store)
 app.use(router)
-app.use(pinia)
+
 app.mount('#app')
