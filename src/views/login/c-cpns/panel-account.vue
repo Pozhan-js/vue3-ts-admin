@@ -24,7 +24,7 @@ import { ElMessage } from 'element-plus'
 import type { ElForm, FormRules } from 'element-plus'
 import useLoginStore from '@/store/login/login'
 import type { IAccount } from '@/types'
-import { localCache } from '@/util/cache'
+import { localCache } from '@/utils/cache'
 // import { accountLoginRequest } from '@/service/login/login'
 
 const loginStore = useLoginStore()

@@ -7,7 +7,7 @@
       </el-icon>
     </div>
     <div class="content">
-      <div class="breadcrumb">面包屑</div>
+      <HeaderCrumb></HeaderCrumb>
       <HeaderInfo></HeaderInfo>
     </div>
   </div>
@@ -16,6 +16,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import HeaderInfo from './c-cpns/HeaderInfo.vue'
+import HeaderCrumb from './c-cpns/HeaderCrumb.vue'
 
 const emit = defineEmits(['handleHold'])
 

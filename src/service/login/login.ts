@@ -1,4 +1,6 @@
+// `..` 表示当前目录的父级目录
 import http from '..'
+
 // import { LOGIN_TOKEN } from '@/global/constants'
 // import { localCache } from '@/util/cache'
 import type { IAccount } from '@/types'

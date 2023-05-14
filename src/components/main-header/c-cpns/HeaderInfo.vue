@@ -59,7 +59,7 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { LOGIN_TOKEN } from '@/global/constants'
-import { localCache } from '@/util/cache'
+import { localCache } from '@/utils/cache'
 
 const router = useRouter()
 

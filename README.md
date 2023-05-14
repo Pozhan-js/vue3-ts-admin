@@ -94,3 +94,11 @@ npm install
 npx lint-staged
 
 ### dropdown 组件，有时当鼠标移入标题时会出现外边框
+
+### 给我解释一下 InstanceType<typeof ElForm>这段代码的意思?
+
+### typeof ElForm 表示获取 ElForm 这个类的类型，也就是获取 ElForm 的构造函数的类型。
+
+### InstanceType<T> 是 TypeScript 中的一个工具类型，可以获取泛型参数 T 所表示的构造函数类型的实例类型。因此，InstanceType<typeof ElForm> 表示获取 ElForm 类型的实例类型，即获取 ElForm 类型的一个实例的类型。
+
+### 因此，这段代码的含义是获取一个 ElForm 类型的实例的类型。

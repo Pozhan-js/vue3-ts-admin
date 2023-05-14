@@ -11,7 +11,6 @@
         <!-- 主题部分 -->
         <el-main>
           <router-view></router-view>
-          main
         </el-main>
       </el-container>
     </el-container>
@@ -21,6 +20,7 @@
 <script lang="ts" setup>
 import MainMenu from '@/components/main-menu/main-menu.vue'
 import MainHeader from '@/components/main-header/main-header.vue'
+
 import { ref } from 'vue'
 
 const isCollapse = ref(false)

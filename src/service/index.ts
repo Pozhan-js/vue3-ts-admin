@@ -1,6 +1,6 @@
 import HYRequest from './request'
 import { BASE_URL, TIME_OUT } from './config'
-import { localCache } from '@/util/cache'
+import { localCache } from '@/utils/cache'
 import { LOGIN_TOKEN } from '@/global/constants'
 
 const hyRequest = new HYRequest({

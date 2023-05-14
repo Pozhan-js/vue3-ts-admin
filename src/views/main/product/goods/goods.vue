@@ -8,5 +8,6 @@
 
 <style scoped>
 .goods {
+  color: red;
 }
 </style>

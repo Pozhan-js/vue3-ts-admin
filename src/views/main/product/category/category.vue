@@ -8,5 +8,6 @@
 
 <style scoped>
 .category {
+  color: red;
 }
 </style>

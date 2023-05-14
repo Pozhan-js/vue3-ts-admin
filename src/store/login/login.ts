@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 import { accountLoginRequest, getUserInfoById, getUserMenusByRoleId } from '@/service/login/login'
 import type { IAccount } from '@/types'
-import { localCache } from '@/util/cache'
-import { mapMenusToRoutes } from '@/util/map-menus'
+import { localCache } from '@/utils/cache'
+import { mapMenusToRoutes } from '@/utils/map-menus'
 import { LOGIN_TOKEN } from '@/global/constants'
 import router from '@/router'
+import useMainStore from '../main/main'
 
 // 定义state类型
 interface ALLState {
@@ -45,6 +46,10 @@ const useLoginStore = defineStore('loginStore', {
         localCache.setCache('userInfo', this.userInfo) //本地缓存用户信息
         localCache.setCache('userMenus', this.userMenus) // 本地缓存权限列表
 
+        // 5。获取全部角色和部门数据
+        const mainStore = useMainStore()
+        mainStore.fetchEntireDataAction()
+
         // 获取动态路由列表  RouteRecordRaw时路由对象的类型
         const routes = mapMenusToRoutes(this.userMenus)
         // 动态加载路由
@@ -66,10 +71,15 @@ const useLoginStore = defineStore('loginStore', {
         this.userInfo = userInfo
         this.userMenus = userMenus
 
+        // 5。获取全部角色和部门数据
+        const mainStore = useMainStore()
+        mainStore.fetchEntireDataAction()
+
         // 这里表示已经登录了，但是刷新页面，动态路由就会消失，所以需要重新加载
         // 此时需要再次动态注册路由
         // 获取动态路由列表  RouteRecordRaw时路由对象的类型
         const routes = mapMenusToRoutes(this.userMenus)
+
         // 动态加载路由
         routes.forEach((route) => router.addRoute('main', route))
       }

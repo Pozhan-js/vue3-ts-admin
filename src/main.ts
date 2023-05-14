@@ -16,7 +16,6 @@ import RegisterIcon from './global/register-icons'
 const app = createApp(App)
 app.use(RegisterIcon)
 // use方法相当于让app去执行这个函数传入函数一个app对象
-
 app.use(store)
 app.use(router)
 

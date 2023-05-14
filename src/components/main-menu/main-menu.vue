@@ -13,6 +13,7 @@
         text-color="#b7bdc3"
         background-color="#001529"
         :collapse="isFold"
+        :default-active="defaultActive"
       >
         <template v-for="item in userMenus" :key="item.id">
           <el-sub-menu :index="item.id + ''">
@@ -24,7 +25,7 @@
             </template>
 
             <template v-for="subItem in item.children" :key="subItem.id">
-              <el-menu-item :index="subItem.id + ''">
+              <el-menu-item :index="subItem.id + ''" @click="handleClickItem(subItem)">
                 {{ subItem.name }}
               </el-menu-item>
             </template>
@@ -37,9 +38,14 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted, ref } from 'vue'
 // 使用store
 import useLoginStore from '@/store/login/login'
+import router from '@/router'
+import { mapPathToMenu } from '@/utils/map-menus'
+import { useRoute } from 'vue-router'
 
+// props传参
 defineProps({
   isFold: {
     type: Boolean,
@@ -47,9 +53,22 @@ defineProps({
   }
 })
 
+// 获取动态路由
 const loginStore = useLoginStore()
-
 const userMenus = loginStore.userMenus
+
+// 监听点击item
+const handleClickItem = (item: any) => {
+  const url = item.url
+  router.push(url)
+}
+
+// 设置默认选中菜单
+const route = useRoute() // 获取当前路由参数对象啊
+const pathMenu = mapPathToMenu(route.path, userMenus) // 获取当前路由对应的菜单
+const defaultActive = ref(pathMenu.id + '')
+
+onMounted(() => {})
 </script>
 
 <style lang="less" scoped>

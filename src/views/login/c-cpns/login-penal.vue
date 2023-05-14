@@ -33,12 +33,7 @@
       <el-checkbox v-model="isRemPwd" label="记住密码" size="large" />
       <el-link type="primary">忘记密码</el-link>
     </div>
-    <el-button
-      class="login-btn"
-      type="primary"
-      size="large"
-      @click="handleLoginBtnClick"
-    >
+    <el-button class="login-btn" type="primary" size="large" @click="handleLoginBtnClick">
       立即登录
     </el-button>
   </div>
@@ -49,7 +44,7 @@ import { ref, watch } from 'vue'
 import PanelAccount from './panel-account.vue'
 import PanelPhone from './panel-phone.vue'
 // import useLoginStore from '@/store/login/login'
-import { localCache } from '@/util/cache'
+import { localCache } from '@/utils/cache'
 
 const isRemPwd = ref<boolean>(localCache.getCache('isRemPwd') ?? false)
 const activeName = ref<string>('account')

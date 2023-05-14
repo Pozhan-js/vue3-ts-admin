@@ -1,6 +1,7 @@
-import { localCache } from '@/util/cache'
+import { localCache } from '@/utils/cache'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { LOGIN_TOKEN } from '@/global/constants'
+import { firstMenu } from '@/utils/map-menus'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -34,14 +35,19 @@ const router = createRouter({
 // 举个列子：/=>/main
 // TODO: 路由守卫
 
-router.beforeEach((to, _, next) => {
+router.beforeEach((to) => {
   const token = localCache.getCache(LOGIN_TOKEN)
   // 字符串以xxx开头
   if (to.path.startsWith('/main') && !token) {
-    // return '/login'
-    next({ name: 'Login' })
-  } else {
-    next()
+    return '/login'
+    // next({ name: 'login' })
+  }
+
+  if (to.path === '/main') {
+    // console.log(firstMenu?.url, '第一个匹配的路由')
+
+    // next(firstMenu?.url)
+    return firstMenu?.url
   }
 })
 
