@@ -30,3 +30,11 @@ export function editUserData(id: number, userInfo: any) {
     data: userInfo
   })
 }
+
+/* 针对页面增删改查 */
+export function postPageListData(pageName: string, userInfo: any) {
+  return HYRequest.post({
+    url: `/${pageName}/list`,
+    data: userInfo
+  })
+}

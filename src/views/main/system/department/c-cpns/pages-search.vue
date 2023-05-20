@@ -48,10 +48,10 @@ const searchForm = reactive({
 const formRef = ref<InstanceType<typeof ElForm>>()
 
 const handleResetClick = () => {
+  // 清空表单
   formRef.value?.resetFields()
   emit('resetClick')
 }
-
 const handleSearchClick = () => {
   emit('queryClick', searchForm)
   // console.log(searchForm)

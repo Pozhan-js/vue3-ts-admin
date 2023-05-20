@@ -3,7 +3,8 @@ import {
   getUserList,
   deleteUserInfo,
   newUserData,
-  editUserData
+  editUserData,
+  postPageListData
 } from '@/service/main/system/system'
 import type { ISystemState } from './type'
 
@@ -11,7 +12,10 @@ const useSystemStore = defineStore('system', {
   // 当没有定义state时，是拿不到state的数据的
   state: (): ISystemState => ({
     usersList: [],
-    usersTotalCount: 0
+    usersTotalCount: 0,
+
+    pageList: [],
+    pageTotalCount: 0
   }),
 
   actions: {
@@ -43,6 +47,16 @@ const useSystemStore = defineStore('system', {
       // console.log('修改谣传数据', id, userInfo)
       const editResult = await editUserData(id, userInfo)
       console.log(editResult)
+    },
+
+    //真对页面增删改查
+    async postPageListDataAction(pageName: string, userInfo: any) {
+      const pageListResult = await postPageListData(pageName, userInfo)
+      console.log(pageListResult)
+      const { list, totalCount } = pageListResult?.data
+
+      this.pageList = list
+      this.pageTotalCount = totalCount
     }
   }
 })
