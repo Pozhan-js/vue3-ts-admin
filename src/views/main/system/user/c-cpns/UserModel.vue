@@ -1,11 +1,6 @@
 <template>
   <div class="user-model">
-    <el-dialog
-      v-model="dialogVisible"
-      :title="isNewRef ? '新建用户' : '修改用户'"
-      width="30%"
-      center
-    >
+    <el-dialog v-model="dialogVisible" :title="isNewRef ? '新建用户' : '修改用户'" width="30%" center>
       <div class="form">
         <el-form :model="userForm" :label-width="100" size="large">
           <el-form-item label="用户名" prop="name">
@@ -18,11 +13,7 @@
             <el-input v-model="userForm.password" placeholder="请输入密码" show-password></el-input>
           </el-form-item>
           <el-form-item label="手机号码" prop="cellphone">
-            <el-input
-              v-model="userForm.cellphone"
-              placeholder="请输入手机号码"
-              show-password
-            ></el-input>
+            <el-input v-model="userForm.cellphone" placeholder="请输入手机号码" show-password></el-input>
           </el-form-item>
           <el-form-item label="选择角色" prop="roleId">
             <!-- <el-input v-model="userForm.roleId" placeholder="请选择角色" show-password></el-input> -->
@@ -87,10 +78,12 @@ const setDialogVisible = (isNew: boolean = true, editInfo?: any) => {
   //如果变量为false 而且editInfo没有值则表示是修改操作
   if (!isNew && userForm) {
     editData.value = editInfo
-    for (const key in editInfo) {
+    // TODO请求携带参数错误
+    for (const key in userForm) {
       userForm[key] = editInfo[key]
     }
   } else {
+    // TODO 新建用户的时候清空表单
     for (const key in userForm) {
       userForm[key] = ''
     }
@@ -105,6 +98,8 @@ const setDialogVisible = (isNew: boolean = true, editInfo?: any) => {
 const handleConfirmClick = () => {
   dialogVisible.value = false
   if (!isNewRef.value && editData.value) {
+    console.log('编辑所需数据', editData.value.id, userForm);
+
     systemStore.editUserDataAction(editData.value.id, userForm)
   } else {
     systemStore.newUserDataAction(userForm)

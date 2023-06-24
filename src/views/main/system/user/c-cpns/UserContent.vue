@@ -21,35 +21,23 @@
         <el-table-column align="center" prop="createAt" label="创建时间">
           <template v-slot="{ row }">
             {{ formateDate(row.createAt) }}
-          </template> </el-table-column
-        >>
+          </template> </el-table-column>>
         <el-table-column align="center" prop="updateAt" label="更新时间">
           <template v-slot="{ row }">
             {{ formateDate(row.updateAt) }}
-          </template> </el-table-column
-        >>
+          </template> </el-table-column>>
         <el-table-column align="center" label="操作" width="160px">
           <template #="{ row }">
-            <el-button type="primary" size="small" text icon="Edit" @click="handleEditBtnClick(row)"
-              >编辑</el-button
-            >
-            <el-button type="danger" size="small" text icon="Delete" @click="handleDeleteClick(row)"
-              >删除</el-button
-            >
+            <el-button type="primary" size="small" text icon="Edit" @click="handleEditBtnClick(row)">编辑</el-button>
+            <el-button type="danger" size="small" text icon="Delete" @click="handleDeleteClick(row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
     <div class="footer">
-      <el-pagination
-        v-model:current-page="currentPage"
-        v-model:page-size="pageSize"
-        :page-sizes="[10, 20, 30]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="usersTotalCount"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20, 30]"
+        layout="total, sizes, prev, pager, next, jumper" :total="usersTotalCount" @size-change="handleSizeChange"
+        @current-change="handleCurrentChange" />
     </div>
   </div>
 </template>
@@ -103,6 +91,7 @@ const handleDeleteClick = ({ id }) => {
   systemStore.deleteUserInfoAction(id)
 }
 
+//TODO 点击编辑按钮 编辑数据有问题 
 const handleEditBtnClick = (itemInfo: any) => {
   emit('newEdit', itemInfo)
 }

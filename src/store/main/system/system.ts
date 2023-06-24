@@ -1,3 +1,11 @@
+/*
+ * @Author: Why so serious my dear 854059946@qq.com
+ * @Date: 2023-06-24 11:49:36
+ * @LastEditors: Why so serious my dear 854059946@qq.com
+ * @LastEditTime: 2023-06-24 13:14:07
+ * @FilePath: /vue3-ts-admin/src/store/main/system/system.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { defineStore } from 'pinia'
 import {
   getUserList,
@@ -47,6 +55,11 @@ const useSystemStore = defineStore('system', {
       // console.log('修改谣传数据', id, userInfo)
       const editResult = await editUserData(id, userInfo)
       console.log(editResult)
+
+      this.postUserListAction({
+        size: 10,
+        offset: 0
+      })
     },
 
     //真对页面增删改查
