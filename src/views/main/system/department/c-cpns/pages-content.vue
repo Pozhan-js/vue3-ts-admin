@@ -23,26 +23,16 @@
         </el-table-column>
         <el-table-column align="center" label="操作" width="160px">
           <template #="{ row }">
-            <el-button type="primary" size="small" text icon="Edit" @click="handleEditBtnClick(row)"
-              >编辑</el-button
-            >
-            <el-button type="danger" size="small" text icon="Delete" @click="handleDeleteClick(row)"
-              >删除</el-button
-            >
+            <el-button type="primary" size="small" text icon="Edit" @click="handleEditBtnClick(row)">编辑</el-button>
+            <el-button type="danger" size="small" text icon="Delete" @click="handleDeleteClick(row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
     <div class="footer">
-      <el-pagination
-        v-model:current-page="currentPage"
-        v-model:page-size="pageSize"
-        :page-sizes="[10, 20, 30]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="pageTotalCount"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
+      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20, 30]"
+        layout="total, sizes, prev, pager, next, jumper" :total="pageTotalCount" @size-change="handleSizeChange"
+        @current-change="handleCurrentChange" />
     </div>
   </div>
 </template>
@@ -93,7 +83,7 @@ const handleCurrentChange = (value: number) => {
 // TODO删除功能待定
 const handleDeleteClick = ({ id }) => {
   // console.log('删除', id)
-  systemStore.deleteUserInfoAction(id)
+  systemStore.deletePageByIdAction('department', id)
 }
 
 const handleEditBtnClick = (itemInfo: any) => {
